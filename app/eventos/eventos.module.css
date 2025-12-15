@@ -1,0 +1,329 @@
+.container {
+    min-height: 100vh;
+    padding-bottom: 80px;
+}
+
+.hero {
+    background: linear-gradient(135deg, hsl(var(--primary-hue), 70%, 25%), hsl(var(--primary-hue), 60%, 15%));
+    padding: 80px 20px 60px;
+    text-align: center;
+    border-bottom: 2px solid hsl(var(--primary-hue), 60%, 40%);
+}
+
+.title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    color: white;
+    margin-bottom: 16px;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+}
+
+.subtitle {
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Filtros */
+.filters {
+    max-width: 1400px;
+    margin: 40px auto 30px;
+    padding: 0 20px;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.filterBtn {
+    padding: 12px 28px;
+    background: hsl(var(--primary-hue), 20%, 18%);
+    border: 2px solid hsl(var(--primary-hue), 30%, 28%);
+    border-radius: 12px;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filterBtn:hover {
+    border-color: hsl(var(--primary-hue), 50%, 40%);
+    background: hsl(var(--primary-hue), 25%, 22%);
+}
+
+.filterActive {
+    background: linear-gradient(135deg, hsl(var(--accent-hue), 70%, 50%), hsl(var(--accent-hue), 60%, 40%));
+    border-color: hsl(var(--accent-hue), 70%, 50%);
+    color: white;
+    box-shadow: 0 4px 16px hsla(var(--accent-hue), 70%, 50%, 0.4);
+}
+
+/* Stats */
+.stats {
+    max-width: 1400px;
+    margin: 0 auto 40px;
+    padding: 0 20px;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    padding: 20px 40px;
+    background: linear-gradient(135deg, hsl(var(--primary-hue), 25%, 18%), hsl(var(--primary-hue), 20%, 12%));
+    border: 2px solid hsl(var(--primary-hue), 30%, 25%);
+    border-radius: 16px;
+}
+
+.statValue {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    color: hsl(var(--accent-hue), 70%, 60%);
+}
+
+.statLabel {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Grid de Eventos */
+.eventsGrid {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+    gap: 30px;
+}
+
+.eventCard {
+    background: linear-gradient(135deg, hsl(var(--primary-hue), 25%, 18%), hsl(var(--primary-hue), 20%, 12%));
+    border: 2px solid hsl(var(--primary-hue), 30%, 25%);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.eventCard:hover {
+    transform: translateY(-8px);
+    border-color: hsl(var(--primary-hue), 50%, 40%);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+}
+
+.eventImage {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    overflow: hidden;
+}
+
+.eventImage img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.eventCard:hover .eventImage img {
+    transform: scale(1.1);
+}
+
+.eventType {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    padding: 8px 18px;
+    color: white;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.pastBadge {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    padding: 8px 18px;
+    background: hsla(0, 0%, 0%, 0.7);
+    backdrop-filter: blur(10px);
+    color: white;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.eventContent {
+    padding: 24px;
+}
+
+.eventTitle {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    color: white;
+    margin-bottom: 12px;
+    line-height: 1.2;
+}
+
+.eventDescription {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.eventDetails {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.detailItem {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 15px;
+}
+
+.detailIcon {
+    font-size: 18px;
+    flex-shrink: 0;
+}
+
+/* Capacidad */
+.capacity {
+    margin-bottom: 20px;
+}
+
+.capacityHeader {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 14px;
+}
+
+.capacityBar {
+    height: 8px;
+    background: hsl(var(--primary-hue), 20%, 20%);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.capacityFill {
+    height: 100%;
+    transition: width 0.5s ease;
+    border-radius: 10px;
+}
+
+/* Acciones */
+.eventActions {
+    display: flex;
+    gap: 12px;
+}
+
+.btn {
+    flex: 1;
+    padding: 14px 24px;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.btnInscribe {
+    background: linear-gradient(135deg, hsl(120, 65%, 45%), hsl(120, 55%, 35%));
+    color: white;
+}
+
+.btnInscribe:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px hsla(120, 65%, 45%, 0.4);
+}
+
+.btnUninscribe {
+    background: linear-gradient(135deg, hsl(200, 70%, 50%), hsl(200, 60%, 40%));
+    color: white;
+}
+
+.btnUninscribe:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px hsla(200, 70%, 50%, 0.4);
+}
+
+.btnFull {
+    background: linear-gradient(135deg, hsl(0, 60%, 50%), hsl(0, 50%, 40%));
+    color: white;
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.btnDisabled {
+    background: hsl(var(--primary-hue), 20%, 25%);
+    color: rgba(255, 255, 255, 0.5);
+    cursor: not-allowed;
+}
+
+/* No events */
+.noEvents {
+    max-width: 600px;
+    margin: 60px auto;
+    text-align: center;
+    padding: 40px;
+    background: linear-gradient(135deg, hsl(var(--primary-hue), 25%, 18%), hsl(var(--primary-hue), 20%, 12%));
+    border: 2px solid hsl(var(--primary-hue), 30%, 25%);
+    border-radius: 20px;
+}
+
+.noEvents p {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 18px;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .eventsGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .stats {
+        flex-direction: column;
+    }
+
+    .stat {
+        width: 100%;
+    }
+
+    .filters {
+        flex-direction: column;
+    }
+
+    .filterBtn {
+        width: 100%;
+    }
+}

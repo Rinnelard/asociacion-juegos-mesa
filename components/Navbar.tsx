@@ -37,7 +37,7 @@ export default function Navbar() {
 
                     {isAuthenticated ? (
                         <>
-                            {user?.role === 'admin' && (
+                            {user?.rol === 'admin' && (
                                 <Link href="/admin" className={`${styles.navLink} ${styles.adminLink}`}>
                                     <span className={styles.adminIcon}>⚙️</span> Admin
                                 </Link>
@@ -49,10 +49,10 @@ export default function Navbar() {
                                     onClick={() => setUserMenuOpen(!userMenuOpen)}
                                 >
                                     <div className={styles.userAvatar}>
-                                        {user?.name.charAt(0).toUpperCase()}
+                                        {user?.nombre?.charAt(0)?.toUpperCase() || 'U'}
                                     </div>
-                                    <span className={styles.userName}>{user?.name}</span>
-                                    {user?.role === 'admin' && (
+                                    <span className={styles.userName}>{user?.nombre || 'Usuario'}</span>
+                                    {user?.rol === 'admin' && (
                                         <span className="badge badge-admin">Admin</span>
                                     )}
                                 </button>

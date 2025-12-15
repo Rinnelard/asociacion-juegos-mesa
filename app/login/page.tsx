@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useRouter } from 'next/navigation';
+import { usersDB } from '@/lib/db';
 import Link from 'next/link';
 import styles from './login.module.css';
 
@@ -19,9 +20,14 @@ export default function LoginPage() {
         setError('');
         setLoading(true);
 
-        const success = await login(email, password);
+        // Simular delay de API
+        await new Promise(resolve => setTimeout(resolve, 500));
 
-        if (success) {
+        // Buscar usuario en la base de datos
+        const user = usersDB.getByEmail(email);
+
+        if (user && user.password === password) {
+            login(user);
             router.push('/');
         } else {
             setError('Email o contraseña incorrectos');

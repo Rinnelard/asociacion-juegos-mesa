@@ -1,113 +1,540 @@
-.page {
-    min-height: 100vh;
-    padding: var(--spacing-3xl) 0;
-    background: var(--bg-primary);
+.container {
+  min-height: 100vh;
+  padding-bottom: 80px;
 }
 
-.header {
-    text-align: center;
-    margin-bottom: var(--spacing-2xl);
+.hero {
+  background: linear-gradient(135deg, hsl(var(--primary-hue), 70%, 25%), hsl(var(--primary-hue), 60%, 15%));
+  padding: 80px 20px 60px;
+  text-align: center;
+  border-bottom: 2px solid hsl(var(--primary-hue), 60%, 40%);
+}
+
+.title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  color: white;
+  margin-bottom: 16px;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.5);
 }
 
 .subtitle {
-    color: var(--text-secondary);
-    font-size: 1.125rem;
-    max-width: 600px;
-    margin: 0 auto;
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  color: rgba(255,255,255,0.9);
 }
 
+/* Filtros */
 .filters {
-    display: flex;
-    gap: var(--spacing-md);
-    margin-bottom: var(--spacing-2xl);
-    flex-wrap: wrap;
+  max-width: 1400px;
+  margin: 40px auto;
+  padding: 0 20px;
 }
 
-.filters select {
-    flex: 1;
-    min-width: 200px;
+.searchContainer {
+  margin-bottom: 24px;
 }
 
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: var(--spacing-lg);
+.searchInput {
+  width: 100%;
+  max-width: 600px;
+  padding: 16px 24px;
+  font-size: 18px;
+  border: 2px solid hsl(var(--primary-hue), 30%, 30%);
+  border-radius: 16px;
+  background: hsl(var(--primary-hue), 20%, 15%);
+  color: white;
+  outline: none;
+  transition: all 0.3s ease;
 }
 
-.card {
-    display: flex;
-    flex-direction: column;
-    padding: 0;
-    overflow: hidden;
+.searchInput:focus {
+  border-color: hsl(var(--primary-hue), 60%, 50%);
+  box-shadow: 0 0 0 4px hsla(var(--primary-hue), 60%, 50%, 0.2);
 }
 
-.cardImage {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 5rem;
-    background: var(--gradient-surface);
-    border-bottom: 1px solid var(--gray-800);
-    filter: drop-shadow(0 4px 8px rgba(138, 80, 255, 0.3));
+.filterRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 20px;
 }
 
-.cardContent {
-    padding: var(--spacing-lg);
-    display: flex;
-    flex-direction: column;
-    flex: 1;
+.select {
+  padding: 12px 20px;
+  font-size: 16px;
+  border: 2px solid hsl(var(--primary-hue), 30%, 30%);
+  border-radius: 12px;
+  background: hsl(var(--primary-hue), 20%, 15%);
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
-.cardContent h3 {
-    margin-bottom: var(--spacing-md);
-    color: var(--text-primary);
+.select:hover {
+  border-color: hsl(var(--primary-hue), 50%, 40%);
 }
 
-.cardMeta {
-    display: flex;
-    gap: var(--spacing-sm);
-    margin-bottom: var(--spacing-md);
-    flex-wrap: wrap;
+.checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border: 2px solid hsl(var(--primary-hue), 30%, 30%);
+  border-radius: 12px;
+  background: hsl(var(--primary-hue), 20%, 15%);
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  user-select: none;
 }
 
-.badgePrestado {
-    padding: var(--spacing-xs) var(--spacing-md);
-    background: rgba(255, 128, 80, 0.2);
-    border: 1px solid rgba(255, 128, 80, 0.3);
-    border-radius: var(--radius-full);
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: var(--accent-400);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
+.checkbox:hover {
+  border-color: hsl(var(--primary-hue), 50%, 40%);
 }
 
-.cardInfo {
-    display: flex;
-    gap: var(--spacing-lg);
-    margin-bottom: var(--spacing-lg);
-    color: var(--text-secondary);
-    font-size: 0.9rem;
+.checkbox input {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.resultsInfo {
+  color: rgba(255,255,255,0.7);
+  font-size: 14px;
+}
+
+/* Grid de Juegos */
+.gamesGrid {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 30px;
+}
+
+.gameCard {
+  background: linear-gradient(135deg, hsl(var(--primary-hue), 25%, 18%), hsl(var(--primary-hue), 20%, 12%));
+  border: 2px solid hsl(var(--primary-hue), 30%, 25%);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.gameCard:hover {
+  transform: translateY(-8px);
+  border-color: hsl(var(--primary-hue), 50%, 40%);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+}
+
+.gameImage {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  background: linear-gradient(135deg, hsl(var(--primary-hue), 40%, 30%), hsl(var(--primary-hue), 30%, 20%));
+}
+
+.gameImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.gameCard:hover .gameImage img {
+  transform: scale(1.1);
+}
+
+.reservedBadge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 8px 16px;
+  background: hsl(var(--accent-hue), 80%, 50%);
+  color: white;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.gameContent {
+  padding: 24px;
+}
+
+.gameName {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  color: white;
+  margin-bottom: 12px;
+}
+
+.gameDescription {
+  color: rgba(255,255,255,0.8);
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.gameInfo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 16px;
 }
 
 .infoItem {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-xs);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: rgba(255,255,255,0.9);
+  font-size: 14px;
+}
+
+.infoIcon {
+  font-size: 18px;
+}
+
+.gameCategory {
+  display: inline-block;
+  padding: 6px 14px;
+  background: hsl(var(--primary-hue), 50%, 30%);
+  color: white;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.stars {
+  font-size: 16px;
+}
+
+.ratingValue {
+  color: rgba(255,255,255,0.7);
+  font-size: 14px;
+}
+
+.gameActions {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.btn {
+  flex: 1;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btnReserve {
+  background: linear-gradient(135deg, hsl(var(--accent-hue), 80%, 55%), hsl(var(--accent-hue), 70%, 45%));
+  color: white;
+}
+
+.btnReserve:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px hsla(var(--accent-hue), 70%, 50%, 0.4);
+}
+
+.btnReserve:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btnReturn {
+  background: linear-gradient(135deg, hsl(200, 70%, 50%), hsl(200, 60%, 40%));
+  color: white;
+}
+
+.btnReturn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px hsla(200, 70%, 50%, 0.4);
+}
+
+.btnRate {
+  background: linear-gradient(135deg, hsl(40, 80%, 55%), hsl(40, 70%, 45%));
+  color: white;
+}
+
+.btnRate:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px hsla(40, 70%, 50%, 0.4);
+}
+
+/* Valoraciones */
+.reviews {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid hsla(var(--primary-hue), 30%, 30%, 0.5);
+}
+
+.reviews summary {
+  cursor: pointer;
+  color: hsl(var(--accent-hue), 70%, 60%);
+  font-size: 14px;
+  font-weight: 600;
+  user-select: none;
+}
+
+.reviews summary:hover {
+  color: hsl(var(--accent-hue), 80%, 70%);
+}
+
+.reviewsList {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.review {
+  padding: 12px;
+  background: hsla(var(--primary-hue), 30%, 20%, 0.5);
+  border-radius: 8px;
+}
+
+.reviewHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+
+.reviewHeader strong {
+  color: white;
+  font-size: 14px;
+}
+
+.reviewStars {
+  font-size: 12px;
+}
+
+.reviewComment {
+  color: rgba(255,255,255,0.8);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/* No Results */
+.noResults {
+  max-width: 600px;
+  margin: 60px auto;
+  text-align: center;
+  padding: 40px;
+  background: linear-gradient(135deg, hsl(var(--primary-hue), 25%, 18%), hsl(var(--primary-hue), 20%, 12%));
+  border: 2px solid hsl(var(--primary-hue), 30%, 25%);
+  border-radius: 20px;
+}
+
+.noResults p {
+  color: rgba(255,255,255,0.8);
+  font-size: 18px;
+  margin-bottom: 24px;
+}
+
+.btnClearFilters {
+  padding: 12px 32px;
+  background: linear-gradient(135deg, hsl(var(--accent-hue), 80%, 55%), hsl(var(--accent-hue), 70%, 45%));
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btnClearFilters:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px hsla(var(--accent-hue), 70%, 50%, 0.4);
+}
+
+/* Modal */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+  backdrop-filter: blur(4px);
+  animation: fadeIn 0.3s ease-out;
+}
+
+.modalContent {
+  background: linear-gradient(135deg, hsl(var(--primary-hue), 25%, 18%), hsl(var(--primary-hue), 20%, 12%));
+  border: 2px solid hsl(var(--primary-hue), 40%, 30%);
+  border-radius: 24px;
+  padding: 32px;
+  max-width: 500px;
+  width: 100%;
+  animation: slideUp 0.3s ease-out;
+}
+
+.modalContent h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 28px;
+  color: white;
+  margin-bottom: 24px;
+}
+
+.ratingInput {
+  margin-bottom: 24px;
+}
+
+.ratingInput label {
+  display: block;
+  color: rgba(255,255,255,0.9);
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.starSelector {
+  display: flex;
+  gap: 8px;
+}
+
+.starSelector button {
+  background: none;
+  border: none;
+  font-size: 36px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 4px;
+}
+
+.starActive {
+  filter: none;
+  transform: scale(1.1);
+}
+
+.starInactive {
+  filter: grayscale(1) brightness(0.5);
+}
+
+.starSelector button:hover {
+  transform: scale(1.2);
+}
+
+.commentInput {
+  margin-bottom: 24px;
+}
+
+.commentInput label {
+  display: block;
+  color: rgba(255,255,255,0.9);
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.commentInput textarea {
+  width: 100%;
+  padding: 12px 16px;
+  background: hsl(var(--primary-hue), 20%, 15%);
+  border: 2px solid hsl(var(--primary-hue), 30%, 25%);
+  border-radius: 12px;
+  color: white;
+  font-family: inherit;
+  font-size: 15px;
+  resize: vertical;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.commentInput textarea:focus {
+  border-color: hsl(var(--primary-hue), 50%, 40%);
+}
+
+.modalActions {
+  display: flex;
+  gap: 12px;
+}
+
+.btnSubmit {
+  flex: 1;
+  padding: 14px 24px;
+  background: linear-gradient(135deg, hsl(var(--accent-hue), 80%, 55%), hsl(var(--accent-hue), 70%, 45%));
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btnSubmit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px hsla(var(--accent-hue), 70%, 50%, 0.4);
+}
+
+.btnCancel {
+  flex: 1;
+  padding: 14px 24px;
+  background: hsl(var(--primary-hue), 25%, 25%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btnCancel:hover {
+  background: hsl(var(--primary-hue), 25%, 30%);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 @media (max-width: 768px) {
-    .filters {
-        flex-direction: column;
-    }
+  .gamesGrid {
+    grid-template-columns: 1fr;
+  }
 
-    .filters select {
-        width: 100%;
-    }
+  .filterRow {
+    flex-direction: column;
+  }
 
-    .grid {
-        grid-template-columns: 1fr;
-    }
+  .select, .checkbox {
+    width: 100%;
+  }
 }

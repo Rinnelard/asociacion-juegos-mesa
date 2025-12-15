@@ -51,8 +51,8 @@ export default function Home() {
 
               {isAuthenticated && (
                 <div className={styles.welcomeMessage}>
-                  👋 ¡Bienvenido de vuelta, <strong>{user?.name}</strong>!
-                  {user?.role === 'admin' && <span className="badge badge-admin">Administrador</span>}
+                  👋 ¡Bienvenido de vuelta, <strong>{user?.nombre}</strong>!
+                  {user?.rol === 'admin' && <span className="badge badge-admin">Administrador</span>}
                 </div>
               )}
             </div>

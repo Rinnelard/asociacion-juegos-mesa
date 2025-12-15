@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useRouter } from 'next/navigation';
+import { usersDB } from '@/lib/db';
 import Link from 'next/link';
 import styles from '../login/login.module.css';
 
@@ -13,7 +14,7 @@ export default function RegisterPage() {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false);
-    const { register } = useAuth();
+    const { login } = useAuth();
     const router = useRouter();
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -32,13 +33,32 @@ export default function RegisterPage() {
 
         setLoading(true);
 
-        const success = await register(name, email, password);
+        // Simular delay de API
+        await new Promise(resolve => setTimeout(resolve, 500));
 
-        if (success) {
-            router.push('/');
-        } else {
+        // Verificar si el email ya existe
+        const existingUser = usersDB.getByEmail(email);
+        if (existingUser) {
             setError('Este email ya está registrado');
+            setLoading(false);
+            return;
         }
+
+        // Crear nuevo usuario
+        const newUser = usersDB.create({
+            nombre: name,
+            email,
+            password,
+            rol: 'user',
+            telefono: '',
+            fechaRegistro: new Date().toISOString().split('T')[0],
+            juegosReservados: [],
+            eventosInscritos: [],
+        });
+
+        // Auto-login
+        login(newUser);
+        router.push('/');
 
         setLoading(false);
     };
