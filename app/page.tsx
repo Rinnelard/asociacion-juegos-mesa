@@ -2,6 +2,7 @@
 
 import { useAuth } from '@/contexts/AuthContext';
 import Link from 'next/link';
+import Image from 'next/image';
 import styles from './page.module.css';
 
 export default function Home() {
@@ -59,7 +60,7 @@ export default function Home() {
 
             <div className={styles.heroImage}>
               <div className={styles.heroCard}>
-                <div className={styles.diceAnimation}>🎲</div>
+                <img src="/noctis.jpg" alt="Dado 3D" className={styles.diceAnimation} />
               </div>
             </div>
           </div>

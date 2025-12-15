@@ -15,7 +15,7 @@ export default function Navbar() {
             <div className={styles.container}>
                 <Link href="/" className={styles.logo}>
                     <span className={styles.logoIcon}>🎲</span>
-                    <span className={styles.logoText}>Asociación Juegos de Mesa</span>
+                    <span className={styles.logoText}>Asociación Noctis</span>
                 </Link>
 
                 <button
