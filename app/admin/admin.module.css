@@ -1,0 +1,211 @@
+.adminPage {
+    min-height: 100vh;
+    padding: var(--spacing-3xl) 0;
+    background: var(--bg-primary);
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-2xl);
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+}
+
+.header h1 {
+    margin-bottom: var(--spacing-xs);
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    margin-bottom: 0;
+}
+
+.statsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-2xl);
+}
+
+.statCard {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-lg);
+    padding: var(--spacing-xl);
+    background: var(--gradient-surface);
+}
+
+.statIcon {
+    font-size: 3rem;
+    filter: drop-shadow(0 4px 8px rgba(138, 80, 255, 0.4));
+}
+
+.statContent {
+    flex: 1;
+}
+
+.statNumber {
+    font-size: 2.5rem;
+    font-weight: 800;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: 'Bebas Neue', sans-serif;
+    line-height: 1;
+    margin-bottom: var(--spacing-xs);
+}
+
+.statLabel {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: var(--spacing-xs);
+}
+
+.statChange {
+    color: var(--success-500);
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.sectionsGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-2xl);
+}
+
+.sectionCard {
+    padding: var(--spacing-xl);
+}
+
+.sectionHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-md);
+    gap: var(--spacing-md);
+}
+
+.sectionHeader h3 {
+    margin-bottom: 0;
+    font-size: 1.25rem;
+}
+
+.badge {
+    padding: var(--spacing-xs) var(--spacing-md);
+    background: var(--bg-tertiary);
+    border: 1px solid var(--gray-700);
+    border-radius: var(--radius-full);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    white-space: nowrap;
+}
+
+.sectionDescription {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin-bottom: var(--spacing-lg);
+    line-height: 1.5;
+}
+
+.sectionActions {
+    display: flex;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+}
+
+.sectionActions .btn {
+    flex: 1;
+    min-width: 120px;
+}
+
+.activityCard {
+    padding: var(--spacing-xl);
+}
+
+.activityCard h3 {
+    margin-bottom: var(--spacing-lg);
+}
+
+.activityList {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.activityItem {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-md);
+    padding: var(--spacing-md);
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-md);
+    border: 1px solid transparent;
+    transition: all var(--transition-fast);
+}
+
+.activityItem:hover {
+    border-color: var(--primary-600);
+    background: var(--bg-secondary);
+}
+
+.activityIcon {
+    font-size: 1.75rem;
+    flex-shrink: 0;
+}
+
+.activityContent {
+    flex: 1;
+    min-width: 0;
+}
+
+.activityText {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin-bottom: var(--spacing-xs);
+    line-height: 1.4;
+}
+
+.activityText strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.activityTime {
+    color: var(--text-tertiary);
+    font-size: 0.8rem;
+}
+
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .statsGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .sectionsGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .sectionActions {
+        flex-direction: column;
+    }
+
+    .sectionActions .btn {
+        width: 100%;
+    }
+
+    .statCard {
+        flex-direction: column;
+        text-align: center;
+    }
+}

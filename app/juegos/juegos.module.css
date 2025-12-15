@@ -1,0 +1,113 @@
+.page {
+    min-height: 100vh;
+    padding: var(--spacing-3xl) 0;
+    background: var(--bg-primary);
+}
+
+.header {
+    text-align: center;
+    margin-bottom: var(--spacing-2xl);
+}
+
+.subtitle {
+    color: var(--text-secondary);
+    font-size: 1.125rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.filters {
+    display: flex;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-2xl);
+    flex-wrap: wrap;
+}
+
+.filters select {
+    flex: 1;
+    min-width: 200px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: var(--spacing-lg);
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    overflow: hidden;
+}
+
+.cardImage {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+    background: var(--gradient-surface);
+    border-bottom: 1px solid var(--gray-800);
+    filter: drop-shadow(0 4px 8px rgba(138, 80, 255, 0.3));
+}
+
+.cardContent {
+    padding: var(--spacing-lg);
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.cardContent h3 {
+    margin-bottom: var(--spacing-md);
+    color: var(--text-primary);
+}
+
+.cardMeta {
+    display: flex;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+    flex-wrap: wrap;
+}
+
+.badgePrestado {
+    padding: var(--spacing-xs) var(--spacing-md);
+    background: rgba(255, 128, 80, 0.2);
+    border: 1px solid rgba(255, 128, 80, 0.3);
+    border-radius: var(--radius-full);
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--accent-400);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.cardInfo {
+    display: flex;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.infoItem {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+}
+
+@media (max-width: 768px) {
+    .filters {
+        flex-direction: column;
+    }
+
+    .filters select {
+        width: 100%;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+}
