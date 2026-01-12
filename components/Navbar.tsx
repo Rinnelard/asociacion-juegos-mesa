@@ -2,6 +2,7 @@
 
 import { useAuth } from '@/contexts/AuthContext';
 import Link from 'next/link';
+import { getAssetPath } from '@/lib/utils';
 import { useState } from 'react';
 import styles from './Navbar.module.css';
 
@@ -14,8 +15,12 @@ export default function Navbar() {
         <nav className={styles.navbar}>
             <div className={styles.container}>
                 <Link href="/" className={styles.logo}>
-                    <span className={styles.logoIcon}>🎲</span>
-                    <span className={styles.logoText}>Asociación Noctis</span>
+                    <div className={styles.logoWrapper}>
+                        <span className={styles.letterN}>n</span>
+                        <img src={getAssetPath('/noctis.jpg')} alt="Noctis Icon" className={styles.logoIconCircle} />
+                        <span className={styles.letterCtis}>ctis</span>
+                    </div>
+                    <div className={styles.logoClaim}>CIUDAD DE JUEGOS</div>
                 </Link>
 
                 <button

@@ -3,7 +3,8 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/contexts/ToastContext';
-import { eventsDB, type Event } from '@/lib/db';
+import { eventsDB } from '@/lib/db';
+import { Event } from '@/lib/types';
 import styles from './eventos.module.css';
 
 export default function EventosPage() {
@@ -96,10 +97,29 @@ export default function EventosPage() {
     return (
         <div className={styles.container}>
             <section className={styles.hero}>
-                <h1 className={styles.title}>Eventos y Actividades</h1>
+                <h1 className={styles.title}>Calendario Noctis</h1>
                 <p className={styles.subtitle}>
-                    Participa en torneos, talleres y reuniones con la comunidad
+                    Sigue todos nuestros eventos y partidas en tiempo real. ¡No te pierdas nada!
                 </p>
+            </section>
+
+            {/* Calendario en Tiempo Real */}
+            <section className={styles.calendarWidget}>
+                <div className={styles.calendarFrame}>
+                    <iframe
+                        src="https://calendar.google.com/calendar/embed?src=es.spain%23holiday%40group.v.calendar.google.com&ctz=Europe%2FMadrid"
+                        style={{ border: 0, width: '100%', height: '600px' }}
+                        frameBorder="0"
+                        scrolling="no"
+                    ></iframe>
+                </div>
+                <div className={styles.calendarInfo}>
+                    <p>💡 Consejo: Puedes suscribirte a nuestro calendario para recibir notificaciones en tu móvil.</p>
+                </div>
+            </section>
+
+            <section className={styles.eventosHeader}>
+                <h2 className={styles.sectionTitle}>Próximas Quedadas</h2>
             </section>
 
             {/* Filtros */}

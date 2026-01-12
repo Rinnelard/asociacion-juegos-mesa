@@ -1,0 +1,168 @@
+.container {
+    min-height: 100vh;
+    padding-bottom: var(--spacing-3xl);
+}
+
+.header {
+    background: var(--bg-secondary);
+    padding: var(--spacing-3xl) 0;
+    margin-bottom: var(--spacing-2xl);
+    border-bottom: 1px solid var(--gray-800);
+}
+
+.title {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-sm);
+    color: var(--text-primary);
+}
+
+.subtitle {
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+}
+
+.content {
+    margin-top: var(--spacing-xl);
+}
+
+.emptyState {
+    text-align: center;
+    padding: var(--spacing-3xl);
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-2xl);
+    border: 2px dashed var(--gray-800);
+}
+
+.emptyIcon {
+    font-size: 4rem;
+    margin-bottom: var(--spacing-md);
+}
+
+.emptyState h2 {
+    margin-bottom: var(--spacing-sm);
+}
+
+.emptyState p {
+    margin-bottom: var(--spacing-xl);
+    color: var(--text-secondary);
+}
+
+.reservasGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: var(--spacing-xl);
+}
+
+.reservaCard {
+    background: var(--surface);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    border: 1px solid var(--gray-800);
+    transition: all var(--transition-medium);
+    display: flex;
+    flex-direction: column;
+}
+
+.reservaCard:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-600);
+    box-shadow: var(--shadow-xl);
+}
+
+.cardImage {
+    position: relative;
+    height: 200px;
+}
+
+.cardImage img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.dateBadge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: var(--noctis-orange);
+    color: white;
+    padding: 8px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 60px;
+    box-shadow: 0 4px 15px rgba(255, 33, 0, 0.4);
+}
+
+.day {
+    font-size: 1.5rem;
+    font-weight: 800;
+    line-height: 1;
+}
+
+.month {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.cardInfo {
+    padding: var(--spacing-lg);
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.cardInfo h3 {
+    margin-bottom: var(--spacing-lg);
+    font-size: 1.5rem;
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-xl);
+}
+
+.detailItem {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.95rem;
+}
+
+.detailItem span {
+    color: var(--text-secondary);
+}
+
+.actions {
+    margin-top: auto;
+}
+
+.btnCancel {
+    width: 100%;
+    padding: 12px;
+    background: hsla(0, 70%, 50%, 0.1);
+    color: #ff4d4d;
+    border: 1px solid hsla(0, 70%, 50%, 0.3);
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btnCancel:hover {
+    background: #ff4d4d;
+    color: white;
+}
+
+@media (max-width: 640px) {
+    .reservasGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .title {
+        font-size: 2rem;
+    }
+}

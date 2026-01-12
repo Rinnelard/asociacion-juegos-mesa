@@ -20,44 +20,56 @@
 
 .logo {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: var(--spacing-sm);
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--text-primary);
     text-decoration: none;
     transition: transform var(--transition-fast);
 }
 
 .logo:hover {
-    transform: scale(1.05);
+    transform: scale(1.02);
 }
 
-.logoIcon {
-    font-size: 2rem;
-    filter: drop-shadow(0 0 10px rgba(138, 80, 255, 0.5));
-    animation: float 3s ease-in-out infinite;
+.logoWrapper {
+    display: flex;
+    align-items: center;
+    line-height: 1;
 }
 
-@keyframes float {
-
-    0%,
-    100% {
-        transform: translateY(0px);
-    }
-
-    50% {
-        transform: translateY(-5px);
-    }
+.letterN {
+    font-family: 'Inter', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--noctis-orange);
+    margin-right: -2px;
 }
 
-.logoText {
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-family: 'Bebas Neue', sans-serif;
-    letter-spacing: 0.05em;
+.letterCtis {
+    font-family: 'Inter', sans-serif;
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--noctis-navy);
+    margin-left: -2px;
+}
+
+.logoIconCircle {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 2px;
+}
+
+.logoClaim {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 400;
+    color: var(--noctis-navy);
+    letter-spacing: 0.4em;
+    margin-top: -5px;
+    text-transform: uppercase;
+    width: 100%;
+    text-align: right;
 }
 
 .mobileToggle {

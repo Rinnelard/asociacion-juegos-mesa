@@ -5,8 +5,8 @@ import { ToastProvider } from "@/contexts/ToastContext";
 import Navbar from "@/components/Navbar";
 
 export const metadata: Metadata = {
-  title: "Asociación de Juegos de Mesa - Comunidad de Jugadores",
-  description: "Únete a nuestra comunidad de entusiastas de los juegos de mesa. Descubre nuevos juegos, participa en eventos y conecta con otros jugadores.",
+  title: "Noctis Ciudad de Juegos - Tu comunidad de ocio",
+  description: "Únete a Noctis Ciudad de Juegos, tu comunidad de entusiastas de los juegos de mesa, rol y miniaturas. Descubre nuevos juegos, participa en eventos y conecta con otros jugadores.",
 };
 
 export default function RootLayout({

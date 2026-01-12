@@ -4,7 +4,8 @@ import { useState, useEffect } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/contexts/ToastContext';
 import { useRouter } from 'next/navigation';
-import { gamesDB, eventsDB, newsDB, statsDB, type Game, type Event, type News } from '@/lib/db';
+import { gamesDB, eventsDB, newsDB, statsDB } from '@/lib/db';
+import { Game, Event, News } from '@/lib/types';
 import styles from './admin.module.css';
 
 export default function AdminPage() {
@@ -47,6 +48,7 @@ export default function AdminPage() {
 
         gamesDB.create({
             ...gameForm,
+            reservas: [],
             valoraciones: [],
             puntuacionMedia: 0,
         });

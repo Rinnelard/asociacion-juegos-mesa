@@ -16,7 +16,7 @@ export default function ContactoPage() {
                         <span className={styles.icon}>📧</span>
                     </div>
                     <h1>Contáctanos</h1>
-                    <p>¿Tienes alguna pregunta? Estamos aquí para ayudarte</p>
+                    <p>Noctis Ciudad de Juegos está a tu disposición para cualquier duda.</p>
                 </div>
 
                 <form onSubmit={handleSubmit} className={styles.form}>
@@ -71,13 +71,13 @@ export default function ContactoPage() {
                 <div className={styles.demoCredentials}>
                     <h4>📍 Información de Contacto</h4>
                     <div className={styles.demoItem}>
-                        📧 Email: info@asociacionjuegos.com
+                        📧 Email: junta@noctisjuegos.com
                     </div>
                     <div className={styles.demoItem}>
-                        📞 Teléfono: +34 123 456 789
+                        📞 Teléfono: +34 9XX XX XX XX
                     </div>
                     <div className={styles.demoItem}>
-                        🏢 Dirección: Calle Ejemplo 123, Madrid
+                        🏢 Dirección: [Tu dirección aquí], Ciudad de Juegos
                     </div>
                 </div>
             </div>

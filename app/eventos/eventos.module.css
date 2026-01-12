@@ -294,6 +294,39 @@
     font-size: 18px;
 }
 
+.calendarWidget {
+    margin: var(--spacing-2xl) 0;
+    padding: var(--spacing-xl);
+    background: var(--bg-secondary);
+    border-radius: var(--radius-2xl);
+    border: 1px solid var(--gray-800);
+    box-shadow: var(--shadow-lg);
+}
+
+.calendarFrame {
+    width: 100%;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    background: white;
+}
+
+.calendarInfo {
+    margin-top: var(--spacing-md);
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.eventosHeader {
+    margin: var(--spacing-2xl) 0 var(--spacing-lg);
+    text-align: center;
+}
+
+.sectionTitle {
+    font-size: 2rem;
+    color: var(--noctis-orange);
+}
+
 @keyframes fadeIn {
     from {
         opacity: 0;

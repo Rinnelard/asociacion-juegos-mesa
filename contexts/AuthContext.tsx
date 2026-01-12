@@ -2,19 +2,7 @@
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
 
-export type UserRole = 'user' | 'admin';
-
-export interface User {
-  id: string;
-  email: string;
-  nombre: string;
-  password?: string;
-  rol: UserRole;
-  telefono?: string;
-  fechaRegistro: string;
-  juegosReservados: string[];
-  eventosInscritos: string[];
-}
+import { User } from '@/lib/types';
 
 interface AuthContextType {
   user: User | null;

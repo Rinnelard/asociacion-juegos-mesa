@@ -15,12 +15,12 @@
   font-size: clamp(2.5rem, 6vw, 4rem);
   color: white;
   margin-bottom: 16px;
-  text-shadow: 0 2px 20px rgba(0,0,0,0.5);
+  text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
 }
 
 .subtitle {
   font-size: clamp(1rem, 2.5vw, 1.25rem);
-  color: rgba(255,255,255,0.9);
+  color: rgba(255, 255, 255, 0.9);
 }
 
 /* Filtros */
@@ -99,7 +99,7 @@
 }
 
 .resultsInfo {
-  color: rgba(255,255,255,0.7);
+  color: rgba(255, 255, 255, 0.7);
   font-size: 14px;
 }
 
@@ -125,7 +125,7 @@
 .gameCard:hover {
   transform: translateY(-8px);
   border-color: hsl(var(--primary-hue), 50%, 40%);
-  box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
 }
 
 .gameImage {
@@ -157,7 +157,7 @@
   border-radius: 20px;
   font-weight: 600;
   font-size: 14px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
 
 .gameContent {
@@ -172,7 +172,7 @@
 }
 
 .gameDescription {
-  color: rgba(255,255,255,0.8);
+  color: rgba(255, 255, 255, 0.8);
   font-size: 15px;
   line-height: 1.6;
   margin-bottom: 16px;
@@ -189,7 +189,7 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  color: rgba(255,255,255,0.9);
+  color: rgba(255, 255, 255, 0.9);
   font-size: 14px;
 }
 
@@ -220,7 +220,7 @@
 }
 
 .ratingValue {
-  color: rgba(255,255,255,0.7);
+  color: rgba(255, 255, 255, 0.7);
   font-size: 14px;
 }
 
@@ -325,7 +325,7 @@
 }
 
 .reviewComment {
-  color: rgba(255,255,255,0.8);
+  color: rgba(255, 255, 255, 0.8);
   font-size: 13px;
   line-height: 1.5;
 }
@@ -342,7 +342,7 @@
 }
 
 .noResults p {
-  color: rgba(255,255,255,0.8);
+  color: rgba(255, 255, 255, 0.8);
   font-size: 18px;
   margin-bottom: 24px;
 }
@@ -371,7 +371,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0,0,0,0.8);
+  background: rgba(0, 0, 0, 0.8);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -404,7 +404,7 @@
 
 .ratingInput label {
   display: block;
-  color: rgba(255,255,255,0.9);
+  color: rgba(255, 255, 255, 0.9);
   font-weight: 600;
   margin-bottom: 12px;
 }
@@ -442,7 +442,7 @@
 
 .commentInput label {
   display: block;
-  color: rgba(255,255,255,0.9);
+  color: rgba(255, 255, 255, 0.9);
   font-weight: 600;
   margin-bottom: 12px;
 }
@@ -509,6 +509,7 @@
   from {
     opacity: 0;
   }
+
   to {
     opacity: 1;
   }
@@ -519,10 +520,68 @@
     transform: translateY(20px);
     opacity: 0;
   }
+
   to {
     transform: translateY(0);
     opacity: 1;
   }
+}
+
+.canvaSection {
+  max-width: 1400px;
+  margin: var(--spacing-2xl) auto;
+  padding: 0 var(--spacing-xl);
+}
+
+.canvaGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-xl);
+  margin-top: var(--spacing-lg);
+}
+
+.canvaCard {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+  padding: var(--spacing-xl);
+  background: var(--bg-secondary);
+  border: 1px solid var(--gray-800);
+  border-radius: var(--radius-xl);
+  text-decoration: none;
+  color: inherit;
+  transition: all var(--transition-medium);
+}
+
+.canvaCard:hover {
+  transform: translateY(-5px);
+  border-color: var(--noctis-orange);
+  background: var(--bg-tertiary);
+  box-shadow: var(--shadow-xl);
+}
+
+.canvaIcon {
+  font-size: 2.5rem;
+  background: var(--bg-tertiary);
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.canvaText h3 {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: 1.25rem;
+}
+
+.canvaText p {
+  margin: var(--spacing-xs) 0 0;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
 }
 
 @media (max-width: 768px) {
@@ -534,7 +593,107 @@
     flex-direction: column;
   }
 
-  .select, .checkbox {
+  .select,
+  .checkbox {
     width: 100%;
   }
+}
+
+/* Nuevos estilos para reservas horarias */
+.myReservationsList {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px solid hsla(var(--primary-hue), 30%, 30%, 0.5);
+}
+
+.myReservationsList h4 {
+  font-size: 14px;
+  color: hsl(var(--accent-hue), 80%, 60%);
+  margin-bottom: 12px;
+}
+
+.miniReservation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background: hsla(var(--primary-hue), 40%, 25%, 0.4);
+  border-radius: 8px;
+  margin-bottom: 8px;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.btnMiniReturn {
+  background: hsla(0, 70%, 50%, 0.2);
+  color: #ff4d4d;
+  border: 1px solid hsla(0, 70%, 50%, 0.3);
+  border-radius: 4px;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.2s;
+}
+
+.btnMiniReturn:hover {
+  background: #ff4d4d;
+  color: white;
+}
+
+.formGroup {
+  margin-bottom: 20px;
+}
+
+.label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 2px solid hsl(var(--primary-hue), 30%, 30%);
+  background: hsl(var(--primary-hue), 20%, 15%);
+  color: white;
+  outline: none;
+}
+
+.input:focus {
+  border-color: hsl(var(--accent-hue), 70%, 50%);
+}
+
+.horariosGrid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 15px;
+  padding: 15px;
+  background: hsla(var(--primary-hue), 30%, 20%, 0.5);
+  border-radius: 12px;
+}
+
+.horarioItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+
+.horarioItem:hover {
+  background: hsla(var(--primary-hue), 40%, 30%, 0.4);
+}
+
+.horarioItem input {
+  width: 18px;
+  height: 18px;
 }

@@ -1,207 +1,127 @@
-// Simulación de base de datos con localStorage
-// En producción, esto se reemplazaría con llamadas a API real
+import { getAssetPath } from './utils';
+import { Game, Event, News, User, Reservation, Rating } from './types';
 
-export interface Game {
-  id: string;
-  nombre: string;
-  descripcion: string;
-  imagen: string;
-  jugadores: string;
-  duracion: string;
-  dificultad: 'Fácil' | 'Media' | 'Difícil';
-  categoria: string;
-  disponible: boolean;
-  reservadoPor?: string;
-  valoraciones: { usuarioId: string; puntuacion: number; comentario: string; fecha: string }[];
-  puntuacionMedia: number;
-}
+// --- INITIAL DATA ---
 
-export interface Event {
-  id: string;
-  titulo: string;
-  descripcion: string;
-  fecha: string;
-  hora: string;
-  lugar: string;
-  imagen: string;
-  capacidadMaxima: number;
-  inscritos: string[];
-  tipo: 'Torneo' | 'Taller' | 'Meetup' | 'Especial';
-}
-
-export interface News {
-  id: string;
-  titulo: string;
-  contenido: string;
-  extracto: string;
-  imagen: string;
-  fecha: string;
-  autor: string;
-  categoria: string;
-}
-
-export interface User {
-  id: string;
-  nombre: string;
-  email: string;
-  password: string;
-  rol: 'user' | 'admin';
-  telefono?: string;
-  fechaRegistro: string;
-  juegosReservados: string[];
-  eventosInscritos: string[];
-}
-
-// Datos iniciales
-const initialGames: Game[] = [
+const INITIAL_GAMES: Game[] = [
   {
-    id: '1',
-    nombre: 'Catan',
-    descripcion: 'Juego de estrategia donde los jugadores colonizan una isla, recogen recursos y construyen asentamientos.',
-    imagen: '/games/catan.jpg',
-    jugadores: '3-4',
-    duracion: '60-120 min',
-    dificultad: 'Media',
+    id: 'carcassonne',
+    nombre: 'Carcassonne',
+    descripcion: 'Un juego de colocar losetas donde los jugadores construyen ciudades, caminos y monasterios en la Francia medieval.',
+    imagen: getAssetPath('/games/carcassonne.png'),
+    jugadores: '2-5',
+    duracion: '35 min',
+    dificultad: 'Fácil',
     categoria: 'Estrategia',
     disponible: true,
+    reservas: [],
     valoraciones: [],
-    puntuacionMedia: 0,
+    puntuacionMedia: 4.8,
   },
   {
-    id: '2',
-    nombre: 'Carcassonne',
-    descripcion: 'Juego de colocación de losetas donde construyes ciudades, caminos y monasterios en la Francia medieval.',
-    imagen: '/games/carcassonne.jpg',
-    jugadores: '2-5',
-    duracion: '30-45 min',
-    dificultad: 'Fácil',
-    categoria: 'Familiar',
-    disponible: true,
-    valoraciones: [],
-    puntuacionMedia: 0,
-  },
-  {
-    id: '3',
+    id: 'pandemic',
     nombre: 'Pandemic',
-    descripcion: 'Juego cooperativo donde trabajas en equipo para salvar al mundo de enfermedades mortales.',
-    imagen: '/games/pandemic.jpg',
+    descripcion: 'Juego cooperativo donde eres parte de un equipo que debe erradicar cuatro enfermedades mortales en todo el mundo.',
+    imagen: getAssetPath('/games/pandemic.png'),
     jugadores: '2-4',
     duracion: '45 min',
     dificultad: 'Media',
     categoria: 'Cooperativo',
     disponible: true,
+    reservas: [],
     valoraciones: [],
-    puntuacionMedia: 0,
+    puntuacionMedia: 4.7,
   },
   {
-    id: '4',
+    id: '7wonders',
     nombre: '7 Wonders',
-    descripcion: 'Desarrolla una civilización y construye maravillas arquitectónicas en este juego de cartas.',
-    imagen: '/games/7wonders.jpg',
+    descripcion: 'Lidera una de las siete grandes ciudades de la Antigüedad. Desarrolla tu civilización y construye una de las Maravillas.',
+    imagen: getAssetPath('/games/7wonders.png'),
     jugadores: '2-7',
     duracion: '30 min',
     dificultad: 'Media',
-    categoria: 'Estrategia',
+    categoria: 'Civilización',
     disponible: true,
+    reservas: [],
     valoraciones: [],
-    puntuacionMedia: 0,
+    puntuacionMedia: 4.9,
   },
   {
-    id: '5',
+    id: 'ticket-to-ride',
     nombre: 'Ticket to Ride',
-    descripcion: 'Construye rutas de tren a través de diferentes países en este clásico juego familiar.',
-    imagen: '/games/ticket.jpg',
+    descripcion: 'Aventureros en tren: recorre Norteamérica conectando ciudades en un mapa clásico y emocionante para toda la familia.',
+    imagen: getAssetPath('/games/ticket-to-ride.png'),
     jugadores: '2-5',
     duracion: '30-60 min',
     dificultad: 'Fácil',
     categoria: 'Familiar',
     disponible: true,
+    reservas: [],
     valoraciones: [],
-    puntuacionMedia: 0,
+    puntuacionMedia: 4.6,
   },
   {
-    id: '6',
+    id: 'gloomhaven',
     nombre: 'Gloomhaven',
-    descripcion: 'RPG táctico de mazmorras con campaña persistente y combate basado en cartas.',
-    imagen: '/games/gloomhaven.jpg',
+    descripcion: 'Combate táctico cooperativo en un mundo de fantasía persistente. Campañas épicas y decisiones que cambian el mundo.',
+    imagen: getAssetPath('/games/gloomhaven.png'),
     jugadores: '1-4',
     duracion: '60-120 min',
     dificultad: 'Difícil',
     categoria: 'Aventura',
     disponible: true,
+    reservas: [],
     valoraciones: [],
-    puntuacionMedia: 0,
-  },
+    puntuacionMedia: 5.0,
+  }
 ];
 
-const initialEvents: Event[] = [
+const INITIAL_EVENTS: Event[] = [
   {
-    id: '1',
-    titulo: 'Torneo de Catan',
-    descripcion: 'Gran torneo mensual de Catan con premios para los ganadores. ¡Demuestra tu estrategia!',
-    fecha: '2025-12-20',
-    hora: '18:00',
-    lugar: 'Sala Principal',
-    imagen: '/events/torneo-catan.jpg',
-    capacidadMaxima: 16,
+    id: 'real-1',
+    titulo: 'Partida Introductoria: Twilight Imperium 4',
+    descripcion: 'Estrategia, diplomacia y conquista espacial en uno de los juegos más legendarios.',
+    fecha: '2026-02-10',
+    hora: '10:30',
+    lugar: 'Tienda Nexo (C/ Castillejos 59)',
+    imagen: getAssetPath('/events/ti4-intro.jpg'),
+    capacidadMaxima: 6,
     inscritos: [],
-    tipo: 'Torneo',
+    tipo: 'Especial',
   },
   {
-    id: '2',
-    titulo: 'Noche de Juegos Cooperativos',
-    descripcion: 'Sesión especial de juegos cooperativos. ¡Trabajemos juntos para ganar!',
-    fecha: '2025-12-22',
-    hora: '19:30',
-    lugar: 'Sala 2',
-    imagen: '/events/cooperativo.jpg',
-    capacidadMaxima: 20,
-    inscritos: [],
-    tipo: 'Meetup',
-  },
-  {
-    id: '3',
-    titulo: 'Taller: Introducción a los Juegos de Mesa',
-    descripcion: 'Aprende los fundamentos de los juegos de mesa modernos. Perfecto para principiantes.',
-    fecha: '2025-12-25',
+    id: 'real-2',
+    titulo: 'Clases: El Señor de los Anillos (Miniaturas)',
+    descripcion: 'Aprende a jugar desde cero. Asedios, escaramuzas y campañas narrativas.',
+    fecha: '2026-02-17',
     hora: '17:00',
-    lugar: 'Sala de Talleres',
-    imagen: '/events/taller.jpg',
+    lugar: 'Sede Noctis / La Comarca Games',
+    imagen: getAssetPath('/events/esdl-clases.jpg'),
     capacidadMaxima: 12,
     inscritos: [],
     tipo: 'Taller',
-  },
+  }
 ];
 
-const initialNews: News[] = [
+const INITIAL_NEWS: News[] = [
   {
     id: '1',
     titulo: '¡Nuevos Juegos en la Biblioteca!',
     extracto: 'Hemos añadido 15 nuevos títulos a nuestra colección.',
-    contenido: 'Estamos emocionados de anunciar que hemos expandido nuestra biblioteca con 15 nuevos juegos de mesa. Desde clásicos modernos hasta novedades del 2024, hay algo para todos los gustos.',
-    imagen: '/news/nuevos-juegos.jpg',
+    contenido: 'Estamos emocionados de anunciar que hemos expandido nuestra biblioteca con 15 nuevos juegos de mesa.',
+    imagen: getAssetPath('/news/nuevos-juegos.jpg'),
     fecha: '2025-12-10',
     autor: 'Admin',
     categoria: 'Novedades',
-  },
-  {
-    id: '2',
-    titulo: 'Récord de Asistencia en Noviembre',
-    extracto: '¡Más de 150 visitantes este mes!',
-    contenido: 'Noviembre ha sido un mes increíble con más de 150 visitantes únicos. Gracias a todos por formar parte de esta comunidad.',
-    imagen: '/news/record.jpg',
-    fecha: '2025-12-05',
-    autor: 'Admin',
-    categoria: 'Comunidad',
-  },
+  }
 ];
 
-const initialUsers: User[] = [
+const INITIAL_USERS: User[] = [
   {
     id: '1',
     nombre: 'Administrador',
-    email: 'admin@juegosdemesa.com',
-    password: 'admin123',
+    email: 'admin@noctis.com',
+    password: 'admin_',
     rol: 'admin',
     telefono: '666777888',
     fechaRegistro: '2024-01-01',
@@ -211,290 +131,301 @@ const initialUsers: User[] = [
   {
     id: '2',
     nombre: 'Usuario Demo',
-    email: 'usuario@juegosdemesa.com',
-    password: 'user123',
+    email: 'user@noctis.com',
+    password: 'usuario_',
     rol: 'user',
     telefono: '655444333',
     fechaRegistro: '2024-06-15',
     juegosReservados: [],
     eventosInscritos: [],
-  },
+  }
 ];
 
-// Helper para obtener datos del localStorage o iniciales
-function getStorageData<T>(key: string, initial: T): T {
-  if (typeof window === 'undefined') return initial;
-  
+// --- STORAGE ENGINE ---
+
+function getLocal<T>(key: string, defaultData: T): T {
+  if (typeof window === 'undefined') return defaultData;
   const stored = localStorage.getItem(key);
   if (!stored) {
-    localStorage.setItem(key, JSON.stringify(initial));
-    return initial;
+    localStorage.setItem(key, JSON.stringify(defaultData));
+    return defaultData;
   }
-  return JSON.parse(stored);
+
+  // Data reconciliation to ensure updates are reflected
+  const data = JSON.parse(stored);
+
+  if (key === 'games') {
+    const currentIds = (data as any[]).map(g => g.id);
+    const hasLegacy = (data as any[]).some(g => !g.reservas);
+    const missingNew = INITIAL_GAMES.some(g => !currentIds.includes(g.id));
+
+    if (hasLegacy || missingNew) {
+      const updated = [...INITIAL_GAMES, ...(data as any[]).filter(g => !INITIAL_GAMES.some(ig => ig.id === g.id))];
+      const cleaned = updated.map(g => ({ ...g, reservas: g.reservas || [] }));
+      localStorage.setItem(key, JSON.stringify(cleaned));
+      return cleaned as unknown as T;
+    }
+  }
+
+  if (key === 'users') {
+    const hasDemoUsers = (data as any[]).some(u => u.email === 'admin@noctis.com');
+    if (!hasDemoUsers) {
+      const merged = [...INITIAL_USERS, ...(data as any[]).filter(u => !INITIAL_USERS.some(iu => iu.email === u.email))];
+      localStorage.setItem(key, JSON.stringify(merged));
+      return merged as unknown as T;
+    }
+  }
+
+  if (key === 'events') {
+    const hasRealEvents = (data as any[]).some(e => e.id === 'real-1');
+    if (!hasRealEvents) {
+      const merged = [...INITIAL_EVENTS, ...(data as any[]).filter(e => !INITIAL_EVENTS.some(ie => ie.id === e.id))];
+      localStorage.setItem(key, JSON.stringify(merged));
+      return merged as unknown as T;
+    }
+  }
+
+  return data;
 }
 
-// Helper para guardar datos
-function saveStorageData<T>(key: string, data: T): void {
+function setLocal<T>(key: string, data: T): void {
   if (typeof window === 'undefined') return;
   localStorage.setItem(key, JSON.stringify(data));
 }
 
-// API de Juegos
+// --- DATABASE SERVICES ---
+
 export const gamesDB = {
-  getAll: (): Game[] => getStorageData('games', initialGames),
-  
-  getById: (id: string): Game | undefined => {
-    const games = gamesDB.getAll();
-    return games.find(g => g.id === id);
-  },
-  
+  getAll: (): Game[] => getLocal('games', INITIAL_GAMES),
+
+  getById: (id: string): Game | undefined =>
+    gamesDB.getAll().find(g => g.id === id),
+
   create: (game: Omit<Game, 'id'>): Game => {
-    const games = gamesDB.getAll();
+    const items = gamesDB.getAll();
     const newGame = { ...game, id: Date.now().toString() };
-    games.push(newGame);
-    saveStorageData('games', games);
+    items.push(newGame);
+    setLocal('games', items);
     return newGame;
   },
-  
+
   update: (id: string, updates: Partial<Game>): Game | undefined => {
-    const games = gamesDB.getAll();
-    const index = games.findIndex(g => g.id === id);
-    if (index === -1) return undefined;
-    
-    games[index] = { ...games[index], ...updates };
-    saveStorageData('games', games);
-    return games[index];
+    const items = gamesDB.getAll();
+    const idx = items.findIndex(i => i.id === id);
+    if (idx === -1) return undefined;
+    items[idx] = { ...items[idx], ...updates };
+    setLocal('games', items);
+    return items[idx];
   },
-  
+
   delete: (id: string): boolean => {
-    const games = gamesDB.getAll();
-    const filtered = games.filter(g => g.id !== id);
-    if (filtered.length === games.length) return false;
-    
-    saveStorageData('games', filtered);
+    const items = gamesDB.getAll();
+    const filtered = items.filter(i => i.id !== id);
+    if (filtered.length === items.length) return false;
+    setLocal('games', filtered);
     return true;
   },
-  
-  addRating: (gameId: string, userId: string, puntuacion: number, comentario: string): boolean => {
+
+  addRating: (gameId: string, userId: string, score: number, comment: string): boolean => {
     const game = gamesDB.getById(gameId);
     if (!game) return false;
-    
-    const newRating = {
+
+    const rating: Rating = {
       usuarioId: userId,
-      puntuacion,
-      comentario,
-      fecha: new Date().toISOString(),
+      puntuacion: score,
+      comentario: comment,
+      fecha: new Date().toISOString()
     };
-    
-    const existingIndex = game.valoraciones.findIndex(v => v.usuarioId === userId);
-    if (existingIndex >= 0) {
-      game.valoraciones[existingIndex] = newRating;
-    } else {
-      game.valoraciones.push(newRating);
-    }
-    
-    // Calcular media
-    const total = game.valoraciones.reduce((sum, v) => sum + v.puntuacion, 0);
-    game.puntuacionMedia = total / game.valoraciones.length;
-    
+
+    const existingIdx = game.valoraciones.findIndex(v => v.usuarioId === userId);
+    if (existingIdx >= 0) game.valoraciones[existingIdx] = rating;
+    else game.valoraciones.push(rating);
+
+    game.puntuacionMedia = game.valoraciones.reduce((s, v) => s + v.puntuacion, 0) / game.valoraciones.length;
     gamesDB.update(gameId, game);
     return true;
-  },
+  }
 };
 
-// API de Eventos
 export const eventsDB = {
-  getAll: (): Event[] => getStorageData('events', initialEvents),
-  
-  getById: (id: string): Event | undefined => {
-    const events = eventsDB.getAll();
-    return events.find(e => e.id === id);
-  },
-  
+  getAll: (): Event[] => getLocal('events', INITIAL_EVENTS),
+  getById: (id: string): Event | undefined => eventsDB.getAll().find(e => e.id === id),
+
   create: (event: Omit<Event, 'id'>): Event => {
-    const events = eventsDB.getAll();
+    const items = eventsDB.getAll();
     const newEvent = { ...event, id: Date.now().toString() };
-    events.push(newEvent);
-    saveStorageData('events', events);
+    items.push(newEvent);
+    setLocal('events', items);
     return newEvent;
   },
-  
+
   update: (id: string, updates: Partial<Event>): Event | undefined => {
-    const events = eventsDB.getAll();
-    const index = events.findIndex(e => e.id === id);
-    if (index === -1) return undefined;
-    
-    events[index] = { ...events[index], ...updates };
-    saveStorageData('events', events);
-    return events[index];
+    const items = eventsDB.getAll();
+    const idx = items.findIndex(i => i.id === id);
+    if (idx === -1) return undefined;
+    items[idx] = { ...items[idx], ...updates };
+    setLocal('events', items);
+    return items[idx];
   },
-  
+
   delete: (id: string): boolean => {
-    const events = eventsDB.getAll();
-    const filtered = events.filter(e => e.id !== id);
-    if (filtered.length === events.length) return false;
-    
-    saveStorageData('events', filtered);
+    const items = eventsDB.getAll();
+    const filtered = items.filter(i => i.id !== id);
+    if (filtered.length === items.length) return false;
+    setLocal('events', filtered);
     return true;
   },
-  
+
   inscribirse: (eventId: string, userId: string): boolean => {
     const event = eventsDB.getById(eventId);
-    if (!event) return false;
-    if (event.inscritos.includes(userId)) return false;
-    if (event.inscritos.length >= event.capacidadMaxima) return false;
-    
+    if (!event || event.inscritos.includes(userId) || event.inscritos.length >= event.capacidadMaxima) return false;
+
     event.inscritos.push(userId);
     eventsDB.update(eventId, event);
-    
-    // Actualizar usuario
+
     const user = usersDB.getById(userId);
     if (user && !user.eventosInscritos.includes(eventId)) {
       user.eventosInscritos.push(eventId);
       usersDB.update(userId, user);
     }
-    
     return true;
   },
-  
+
   desinscribirse: (eventId: string, userId: string): boolean => {
     const event = eventsDB.getById(eventId);
     if (!event) return false;
-    
+
     event.inscritos = event.inscritos.filter(id => id !== userId);
     eventsDB.update(eventId, event);
-    
-    // Actualizar usuario
+
     const user = usersDB.getById(userId);
     if (user) {
       user.eventosInscritos = user.eventosInscritos.filter(id => id !== eventId);
       usersDB.update(userId, user);
     }
-    
     return true;
-  },
+  }
 };
 
-// API de Noticias
 export const newsDB = {
-  getAll: (): News[] => getStorageData('news', initialNews),
-  
-  getById: (id: string): News | undefined => {
-    const news = newsDB.getAll();
-    return news.find(n => n.id === id);
-  },
-  
-  create: (newsItem: Omit<News, 'id'>): News => {
-    const news = newsDB.getAll();
-    const newNews = { ...newsItem, id: Date.now().toString() };
-    news.unshift(newNews); // Añadir al principio
-    saveStorageData('news', news);
+  getAll: (): News[] => getLocal('news', INITIAL_NEWS),
+  getById: (id: string): News | undefined => newsDB.getAll().find(n => n.id === id),
+
+  create: (news: Omit<News, 'id'>): News => {
+    const items = newsDB.getAll();
+    const newNews = { ...news, id: Date.now().toString() };
+    items.push(newNews);
+    setLocal('news', items);
     return newNews;
   },
-  
+
   update: (id: string, updates: Partial<News>): News | undefined => {
-    const news = newsDB.getAll();
-    const index = news.findIndex(n => n.id === id);
-    if (index === -1) return undefined;
-    
-    news[index] = { ...news[index], ...updates };
-    saveStorageData('news', news);
-    return news[index];
+    const items = newsDB.getAll();
+    const idx = items.findIndex(i => i.id === id);
+    if (idx === -1) return undefined;
+    items[idx] = { ...items[idx], ...updates };
+    setLocal('news', items);
+    return items[idx];
   },
-  
+
   delete: (id: string): boolean => {
-    const news = newsDB.getAll();
-    const filtered = news.filter(n => n.id !== id);
-    if (filtered.length === news.length) return false;
-    
-    saveStorageData('news', filtered);
+    const items = newsDB.getAll();
+    const filtered = items.filter(i => i.id !== id);
+    if (filtered.length === items.length) return false;
+    setLocal('news', filtered);
     return true;
-  },
+  }
 };
 
-// API de Usuarios
 export const usersDB = {
-  getAll: (): User[] => getStorageData('users', initialUsers),
-  
-  getById: (id: string): User | undefined => {
-    const users = usersDB.getAll();
-    return users.find(u => u.id === id);
-  },
-  
-  getByEmail: (email: string): User | undefined => {
-    const users = usersDB.getAll();
-    return users.find(u => u.email === email);
-  },
-  
+  getAll: (): User[] => getLocal('users', INITIAL_USERS),
+  getById: (id: string): User | undefined => usersDB.getAll().find(u => u.id === id),
+  getByEmail: (email: string): User | undefined => usersDB.getAll().find(u => u.email === email),
+
   create: (user: Omit<User, 'id'>): User => {
     const users = usersDB.getAll();
     const newUser = { ...user, id: Date.now().toString() };
     users.push(newUser);
-    saveStorageData('users', users);
+    setLocal('users', users);
     return newUser;
   },
-  
+
   update: (id: string, updates: Partial<User>): User | undefined => {
-    const users = usersDB.getAll();
-    const index = users.findIndex(u => u.id === id);
-    if (index === -1) return undefined;
-    
-    users[index] = { ...users[index], ...updates };
-    saveStorageData('users', users);
-    return users[index];
+    const items = usersDB.getAll();
+    const idx = items.findIndex(i => i.id === id);
+    if (idx === -1) return undefined;
+    items[idx] = { ...items[idx], ...updates };
+    setLocal('users', items);
+    return items[idx];
   },
-  
-  reservarJuego: (userId: string, gameId: string): boolean => {
+
+  reservarJuego: (userId: string, gameId: string, fecha: string, todoElDia: boolean, horarios?: string[]): boolean => {
     const user = usersDB.getById(userId);
     const game = gamesDB.getById(gameId);
-    
+
     if (!user || !game || !game.disponible) return false;
-    if (user.juegosReservados.includes(gameId)) return false;
-    
+
+    const yaReservado = (game.reservas || []).some(r =>
+      r.fecha === fecha && (r.todoElDia || todoElDia || (horarios && r.horarios?.some(h => horarios.includes(h))))
+    );
+    if (yaReservado) return false;
+
+    const nuevaReserva: Reservation = {
+      id: Date.now().toString(),
+      usuarioId: userId,
+      fecha,
+      todoElDia,
+      horarios
+    };
+
+    game.reservas = [...(game.reservas || []), nuevaReserva];
     user.juegosReservados.push(gameId);
-    game.disponible = false;
-    game.reservadoPor = userId;
-    
+
     usersDB.update(userId, user);
-    gamesDB.update(gameId, game);
-    
+    gamesDB.update(gameId, { reservas: game.reservas });
     return true;
   },
-  
-  devolverJuego: (userId: string, gameId: string): boolean => {
+
+  devolverJuego: (userId: string, gameId: string, reservaId?: string): boolean => {
     const user = usersDB.getById(userId);
     const game = gamesDB.getById(gameId);
-    
+
     if (!user || !game) return false;
-    
-    user.juegosReservados = user.juegosReservados.filter(id => id !== gameId);
-    game.disponible = true;
-    game.reservadoPor = undefined;
-    
+
+    if (reservaId) {
+      game.reservas = game.reservas.filter(r => r.id !== reservaId);
+    } else {
+      const idx = [...(game.reservas || [])].reverse().findIndex(r => r.usuarioId === userId);
+      if (idx !== -1) {
+        const actualIdx = (game.reservas || []).length - 1 - idx;
+        game.reservas.splice(actualIdx, 1);
+      }
+    }
+
+    user.juegosReservados = user.juegosReservados.filter(id => id !== gameId || (game.reservas || []).some(r => r.usuarioId === userId));
+
     usersDB.update(userId, user);
-    gamesDB.update(gameId, game);
-    
+    gamesDB.update(gameId, { reservas: game.reservas });
     return true;
-  },
+  }
 };
 
-// Estadísticas para el panel admin
 export const statsDB = {
   getStats: () => {
     const games = gamesDB.getAll();
     const events = eventsDB.getAll();
     const users = usersDB.getAll();
     const news = newsDB.getAll();
-    
+
     return {
       totalGames: games.length,
       availableGames: games.filter(g => g.disponible).length,
       totalEvents: events.length,
       upcomingEvents: events.filter(e => new Date(e.fecha) >= new Date()).length,
       totalUsers: users.length,
+      reservedGames: games.reduce((acc, g) => acc + (g.reservas?.length || 0), 0),
       totalNews: news.length,
-      reservedGames: games.filter(g => !g.disponible).length,
-      totalInscriptions: events.reduce((sum, e) => sum + e.inscritos.length, 0),
+      totalInscriptions: events.reduce((acc, e) => acc + e.inscritos.length, 0)
     };
-  },
+  }
 };
