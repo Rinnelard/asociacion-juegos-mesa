@@ -14,7 +14,7 @@ export default function Navbar() {
     return (
         <nav className={styles.navbar}>
             <div className={styles.container}>
-                <Link href="/" className={styles.logo}>
+                <Link href="/" className={styles.logo} onClick={() => setMenuOpen(false)}>
                     <div className={styles.logoWrapper}>
                         <span className={styles.letterN}>n</span>
                         <img src={getAssetPath('/noctis.jpg')} alt="Noctis Icon" className={styles.logoIconCircle} />
@@ -34,16 +34,16 @@ export default function Navbar() {
                 </button>
 
                 <div className={`${styles.navLinks} ${menuOpen ? styles.navLinksOpen : ''}`}>
-                    <Link href="/" className={styles.navLink}>Inicio</Link>
-                    <Link href="/juegos" className={styles.navLink}>Catálogo</Link>
-                    <Link href="/eventos" className={styles.navLink}>Eventos</Link>
-                    <Link href="/noticias" className={styles.navLink}>Noticias</Link>
-                    <Link href="/contacto" className={styles.navLink}>Contacto</Link>
+                    <Link href="/" className={styles.navLink} onClick={() => setMenuOpen(false)}>Inicio</Link>
+                    <Link href="/juegos" className={styles.navLink} onClick={() => setMenuOpen(false)}>Catálogo</Link>
+                    <Link href="/eventos" className={styles.navLink} onClick={() => setMenuOpen(false)}>Eventos</Link>
+                    <Link href="/noticias" className={styles.navLink} onClick={() => setMenuOpen(false)}>Noticias</Link>
+                    <Link href="/contacto" className={styles.navLink} onClick={() => setMenuOpen(false)}>Contacto</Link>
 
                     {isAuthenticated ? (
                         <>
                             {user?.rol === 'admin' && (
-                                <Link href="/admin" className={`${styles.navLink} ${styles.adminLink}`}>
+                                <Link href="/admin" className={`${styles.navLink} ${styles.adminLink}`} onClick={() => setMenuOpen(false)}>
                                     <span className={styles.adminIcon}>⚙️</span> Admin
                                 </Link>
                             )}
@@ -64,13 +64,13 @@ export default function Navbar() {
 
                                 {userMenuOpen && (
                                     <div className={styles.userDropdown}>
-                                        <Link href="/perfil" className={styles.dropdownItem}>
+                                        <Link href="/perfil" className={styles.dropdownItem} onClick={() => { setMenuOpen(false); setUserMenuOpen(false); }}>
                                             👤 Mi Perfil
                                         </Link>
-                                        <Link href="/mis-juegos" className={styles.dropdownItem}>
+                                        <Link href="/mis-juegos" className={styles.dropdownItem} onClick={() => { setMenuOpen(false); setUserMenuOpen(false); }}>
                                             🎮 Mis Juegos
                                         </Link>
-                                        <button onClick={logout} className={styles.dropdownItem}>
+                                        <button onClick={() => { logout(); setMenuOpen(false); setUserMenuOpen(false); }} className={styles.dropdownItem}>
                                             🚪 Cerrar Sesión
                                         </button>
                                     </div>
@@ -79,10 +79,10 @@ export default function Navbar() {
                         </>
                     ) : (
                         <div className={styles.authButtons}>
-                            <Link href="/login" className="btn btn-secondary btn-sm">
+                            <Link href="/login" className="btn btn-secondary btn-sm" onClick={() => setMenuOpen(false)}>
                                 Iniciar Sesión
                             </Link>
-                            <Link href="/registro" className="btn btn-primary btn-sm">
+                            <Link href="/registro" className="btn btn-primary btn-sm" onClick={() => setMenuOpen(false)}>
                                 Registrarse
                             </Link>
                         </div>
