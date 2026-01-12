@@ -357,6 +357,17 @@
     align-items: center;
 }
 
+@media (max-width: 968px) {
+    .historyGrid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-xl);
+    }
+
+    .historyImages {
+        order: -1;
+    }
+}
+
 .accentTitle {
     color: var(--noctis-orange);
     font-size: 2.5rem;
@@ -469,6 +480,15 @@
     padding: var(--spacing-2xl);
     border-radius: var(--radius-2xl);
     border: 1px solid var(--gray-800);
+}
+
+@media (max-width: 968px) {
+    .paneGrid {
+        grid-template-columns: 1fr;
+        padding: var(--spacing-xl);
+        gap: var(--spacing-xl);
+        text-align: center;
+    }
 }
 
 .paneImage {
@@ -606,5 +626,13 @@
 
     .statsGrid {
         grid-template-columns: 1fr;
+    }
+
+    .accentTitle {
+        font-size: 1.75rem;
+    }
+
+    .paneInfo h3 {
+        font-size: 1.5rem;
     }
 }
